@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: elora
+spec:
+  selector:
+    matchLabels:
+      app: elora
+  serviceName: elora
+  template:
+    metadata:
+      labels:
+        app: elora
+    spec:
+      priorityClassName: wes-high-priority
+      containers:
+      - name: elora 
+        image: 10.31.81.1:5000/local/elora:0.3
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 200m
+            memory: 200Mi
+          limits:
+            cpu: 250m
+            memory: 250Mi
+        securityContext:
+          capabilities:
+            add: ["NET_ADMIN"]
+        volumeMounts:
+        - name: config
+          mountPath: /home/elora/configuration.toml
+          subPath: configuration.toml
+        - name: elora-example
+          mountPath: /home/elora/ns-3-dev/scratch/elora-example
+        - name: data
+          mountPath: /home/elora/data
+          subPath: data
+        - name: tun-device
+          mountPath: /dev/net/tun
+      volumes:
+      - name: config
+        configMap:
+          name: elora-config-cm
+      - name: elora-example
+        configMap:
+          name: elora-example-cm
+      - name: data
+        persistentVolumeClaim:
+          claimName: data
+      - name: tun-device
+        hostPath:
+          path: /dev/net/tun
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 250Mi
