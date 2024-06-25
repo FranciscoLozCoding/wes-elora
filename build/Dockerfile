@@ -49,6 +49,10 @@ RUN apk --no-cache add \
     # Setup home, data, ns-3-dev/scratch/elora-example directories
     mkdir -p "${HOME}/data" "${NS3DIR}/scratch/elora-example"
 
+# modifications for kubernetes deployment - FL
+# need files to exist for kubernetes deployment - FL
+# RUN touch "${HOME}/configuration.toml" 
+
 # Configure container startup
 ENTRYPOINT ["tini", "-g", "--"]
 CMD ["start.py"]
