@@ -98,6 +98,8 @@ int main(int argc, char *argv[])
         // LogComponentEnable ("LoraFrameHeader", LOG_LEVEL_INFO);
         /* Monitor state changes of devices */
         LogComponentEnable("EloraUtilities", LOG_LEVEL_ALL);
+        //Enable chirpstack helper logs - FL
+        LogComponentEnable("ChirpstackHelper",LOG_LEVEL_ALL);
         /* Formatting */
         LogComponentEnableAll(LOG_PREFIX_FUNC);
         LogComponentEnableAll(LOG_PREFIX_NODE);
