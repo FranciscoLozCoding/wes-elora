@@ -9,7 +9,7 @@
 #
 
 # ChirpStack gateway bridge address
-destAddr = "localhost"
+destAddr = "10.43.247.155"
 
 # Name of the tap interface that you will create with ns-3 
 #
