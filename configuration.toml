@@ -8,8 +8,21 @@
 # using cmd.AddValue(...) in the main .cc file.
 #
 
-# ChirpStack gateway bridge address
+# ChirpStack gateway bridge address, TODO: This changes per node
 destAddr = "localhost"
+
+# Port used by the ChirpStack Gateway Bridge at the destination, TODO: This changes per node
+destPort = 1700
+
+# Chirpstack REST API endpoint IP address, TODO: This changes per node
+# (Leave it like this if it is hosted locally in another container)
+apiAddr = "10.43.247.155" 
+
+# Chirpstack REST API endpoint port
+apiPort = 8090
+
+# Chirpstack API token (this needs to be generated in Chirpstack and copy-pasted here), TODO: This changes per node
+token = ""
 
 # Name of the tap interface that you will create with ns-3 
 #
@@ -42,19 +55,6 @@ RngRun = 1
 
 # Chirpstack tenant that will be associated to this ELoRa instance
 tenant = "ELoRa"
-
-# Chirpstack REST API endpoint IP address
-# (Leave it like this if it is hosted locally in another container)
-apiAddr = "10.43.247.155"
-
-# Chirpstack REST API endpoint port
-apiPort = 8090
-
-# Chirpstack API token (this needs to be generated in Chirpstack and copy-pasted here)
-token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjaGlycHN0YWNrIiwiaXNzIjoiY2hpcnBzdGFjayIsInN1YiI6ImQ2ZGQ4OGFiLTNmN2MtNGJlZi1hZWU1LWVmZGRkNWEyZmE3MSIsInR5cCI6ImtleSJ9.UJmVOv2Chbh1T5xjUSBF9jZuGmmLg3xu7Dg_77otxkA"
-
-# Port used by the ChirpStack Gateway Bridge at the destination 
-destPort = 1700
 
 # Number of periods to simulate (1 period = 1 hour)
 periods = 24
